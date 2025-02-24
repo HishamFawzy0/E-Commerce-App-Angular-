@@ -1,0 +1,108 @@
+<section class=" bg-gray-50 border rounded w-10/12  p-4 shadow mx-auto">
+        <h2 class="mb-4 text-3xl font-light bg-green-50 p-4 text-center "> CheckOut  </h2>
+        
+        <form [formGroup]="checkoutForm" (ngSubmit)="submitForm()">
+        
+        
+            <div class="mb-3">
+                <label for="details" class="block mb-2 text-base font-medium  text-green-900 dark:text-green-950">details</label>
+                <input formControlName="details" type="details" id="details"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+        
+                @if(checkoutForm.get('details')?.errors && checkoutForm.get('details')?.touched ){
+                <div class="flex p-4 mt-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <ul class="mt-1.5 list-disc list-inside">
+                            @if (checkoutForm.get('details')?.hasError('required')) {
+                            <li>details is required</li>
+                            }@else if (checkoutForm.get('details')?.hasError('minlength')) {
+                            <li>Minlength should be bettween 3 and 20</li>
+                            }
+        
+                        </ul>
+                    </div>
+                </div>
+                }
+            </div>
+
+
+            <div class="mb-3">
+                <label for="phone" class="block mb-2 text-base font-medium  text-green-900 dark:text-green-950">phone</label>
+                <input formControlName="phone" type="number" id="phone"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            
+                @if(checkoutForm.get('phone')?.errors && checkoutForm.get('phone')?.touched ){
+                <div class="flex p-4 mt-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <ul class="mt-1.5 list-disc list-inside">
+                            @if (checkoutForm.get('phone')?.hasError('required')) {
+                            <li>phone is required</li>
+                            }@else if (checkoutForm.get('phone')?.hasError('pattern')) {
+                            <li>Enter a valid number</li>
+                            }
+            
+                        </ul>
+                    </div>
+                </div>
+                }
+            </div>
+
+
+
+            <div class="mb-3">
+                <label for="city" class="block mb-2 text-base font-medium  text-green-900 dark:text-green-950">city</label>
+                <input formControlName="city" type="city" id="city"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            
+                @if(checkoutForm.get('city')?.errors && checkoutForm.get('city')?.touched ){
+                <div class="flex p-4 mt-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <ul class="mt-1.5 list-disc list-inside">
+                            @if (checkoutForm.get('city')?.hasError('required')) {
+                            <li>city is required</li>
+                            }@else if (checkoutForm.get('city')?.hasError('minlength') ||checkoutForm.get('city')?.hasError('maxlength') ) {
+                            <li>Minlength should be bettween 3 and 20</li>
+                            }
+            
+                        </ul>
+                    </div>
+                </div>
+                }
+            </div>
+        
+        
+            <div class="flex flex-col">
+                <button [disabled]="checkoutForm.invalid"
+                    [class]="{'cursor-not-allowed': checkoutForm.invalid,'btn-gray': checkoutForm.invalid ,'btn-green': checkoutForm.valid}"
+                    type="submit" class="">Check Out
+                    @if(isLoading){
+                    <i class=" ms-4 fas fa-spin fa-spinner"></i>
+                    }
+                </button>  
+               
+            </div>
+           
+        </form>
+
+</section>

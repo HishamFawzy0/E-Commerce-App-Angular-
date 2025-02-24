@@ -1,0 +1,56 @@
+<section class="bg-gray-50 border rounded p-4 shadow  mx-auto">
+    <h2 class="mb-4 text-3xl font-light bg-green-50 p-4 text-center ">Your Cart</h2>
+        
+
+    @if ((cartDetails.products ?? []).length > 0) {
+        <h3 class="text-green-600  ">Total Price: {{  cartDetails.totalCartPrice }} EGP  </h3>
+        @for (prod of cartDetails.products; track prod.product._id) {
+            <div class="grid md:grid-cols-[10%_minmax(0,1fr)] border-b-2 mb-5 gap-4">
+               <!-- image div -->
+                <div> 
+                    <img [src]="prod.product.imageCover" class="w-full " alt="">
+                </div>
+                <!-- Info -->
+                <div class="flex items-center mb-2 justify-between">
+                    <div>
+                        <h3>{{prod.product.title.split(" ",5).join(" ")}}</h3> 
+                        <h4 class=" text-green-700 ">price: {{prod.price}}  </h4> 
+                        <h4>quantity: {{prod.count}} </h4>
+                        <button (click)="removeProduct(prod.product._id,prod.product.imageCover)" class="  px-2 py-1 mt-2 focus:ring-2 focus:outline-none focus:ring-red-300 rounded-md border transition border-red-700 hover:bg-red-800 hover:text-white" ><i class="fa-solid fa-trash-can text-red-600 me-3"></i>Remove</button>
+                    </div>
+            
+                    <div>
+                        <button type="button" (click)="updateProductQuantity(prod.product._id,prod.count + 1)"
+                            class="text-green-700 hover:text-white border transition border-green-700 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-1 text-center  dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"><i class="fa-solid fa-plus"></i></button>
+                            <span class="mx-2">{{prod.count}}</span>
+                        @if (prod.count == 1) {
+                            <button (click)="removeProduct(prod.product._id,prod.product.imageCover)" class="text-red-700 hover:text-white border transition border-red-700 hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1 text-center  dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-800"><i class="fa-solid fa-trash-can"></i></button>
+                        }@else
+                        {
+                            <button type="button" (click)="updateProductQuantity(prod.product._id ,prod.count - 1)"
+                                class="text-green-700 hover:text-white border transition border-green-700 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-1 text-center  dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"><i class="fa-solid fa-minus"></i></button>
+                                
+                        } 
+
+                    </div>
+                </div>
+            </div>
+        
+        }
+        <div class="flex justify-between ">
+        
+            <button [routerLink]="['/checkout',cartDetails._id]" class="btn-green ">Checkout <p class="text-white  ">Total Price: {{ cartDetails.totalCartPrice }} EGP </p></button>
+            
+            
+            <button (click)="clearCart()"  class=" px-2 py-1 mt-2 focus:ring-2 focus:outline-none focus:ring-red-300 rounded-md border transition border-red-700 hover:bg-red-800 hover:text-white"><i class="fa-solid fa-trash-can text-red-600 me-3"></i> Clear All Items</button>
+
+    </div>
+    }@else {
+        <h3 class="text-center text-red-500">No Items in Cart</h3>
+        <div class="flex justify-center">
+            <img src="./images/empty-cart-empty-empty.jpg" alt="cart empty" class="  w-60 h-60">
+        </div>
+        <button routerLink="/home" routerLinkActive="router-link-active"  class="btn-green block  mt-10 mx-auto ">Return to Home</button>
+    }
+     
+</section>

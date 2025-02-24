@@ -1,0 +1,35 @@
+@if(orders.length > 0){
+    <h1 class="text-3xl font-bold text-center text-green-500   ">All orders</h1>
+    @for (item of orders; track $index) {
+        <div class="border shadow-md my-10 p-4 bg-gray-50 rounded-2xl border border-gray-200">
+            
+            <h4>Payment type : {{item.paymentMethodType}}</h4>
+            
+            @for (product of item.cartItems ; track $index) {
+                <div class="bg-white p-4 shadow-md rounded-lg mb-6">
+                    <div class="flex justify-between items-center border-b pb-2 mb-2">
+                        <h2 class="text-lg font-semibold">Order {{product.product.id}}</h2>  
+                        <span class="text-sm text-gray-500">Quantity: {{product.count}}</span>  
+                    </div>
+                    <p><strong>Payment Method:</strong> Card</p>
+                    <p><strong>Status:</strong> <span class="text-green-500">Paid</span> | <span class="text-red-500">Not
+                            Delivered</span></p>
+                    <!-- <p><strong>Total:</strong> {{product.price}}</p>   -->
+                    <h3 class="font-semibold mt-2">Items:</h3> 
+                    <ul class="mt-2 space-y-2">
+                        <li class="flex items-center space-x-4">
+                            <img [src]="product.product.imageCover" alt="Product" class="w-16 h-16 object-cover rounded">
+                            <div>
+                                <p class="font-medium"> {{product.product.title}}</p>
+                                <p class="text-gray-600">Qty: {{product.count}} | Price: ${{product.price}}</p>
+                            </div>
+                        </li>
+                
+                    </ul>
+                </div>
+                
+            }
+            <h4 class="text-center text-2xl"><strong>total Order Price:</strong> {{item.totalOrderPrice}}$ </h4>
+        </div>
+    }
+}

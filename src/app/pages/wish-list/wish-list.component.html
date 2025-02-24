@@ -1,0 +1,43 @@
+<div class=" mx-auto p-4">
+        <h2 class="mb-4 text-3xl font-light bg-green-50 p-4 text-center ">Your WishList</h2>
+
+ 
+        @if (wishList.length > 0) {
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            @for (product of wishList; track product._id) {
+                <div class=""> 
+                    <div   class="bg-white shadow-md  rounded-lg overflow-hidden">
+                        <div [routerLink]="['/details', product._id]" class="cursor-pointer">
+                            <img [src]="product.imageCover" alt="{{ product.title }}"  class="w-full object-contain h-48">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold line-clamp-2 text-gray-800">{{ product.title.split(" ",5).join(" ") }}</h3>
+                                <p class="text-gray-500 text-sm line-clamp-2 mb-2">{{ product.description }}</p>
+                                <div class="flex items-center justify-between mt-2">
+                                </div>
+                            </div>
+    
+                        </div>
+    
+                        <div class="flex items-center justify-between p-4 bg-gray-100">
+                            <span class="text-lg font-bold text-green-600">${{ product.price }}</span>
+                            <button  (click)="removeFromWishlist( product.imageCover   ,product._id)" class="text-red-500 hover:text-red-700  "><i class="fas fa-heart"></i> Remove</button>
+    
+                        </div>
+                    
+                    </div>
+                    
+                </div>
+    
+    
+            }
+
+        </div>
+    }@else {
+        
+        <div class="flex justify-center items-center flex-col">
+            <!-- <h2 class="text-center text-gray-500">Your wishlist is empty</h2> -->
+            <img src="./images/empty_wishlist.png" alt="cart empty" class=" h-72">
+            <button routerLink="/home" routerLinkActive="router-link-active"  class="btn-green block  mt-10 mx-auto ">Return to Home</button>
+        </div>
+    }
+</div>

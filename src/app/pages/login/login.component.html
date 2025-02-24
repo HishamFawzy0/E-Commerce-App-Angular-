@@ -1,0 +1,92 @@
+<section class="w-10/12 my-16 mx-auto bg-gray-50 p-4 rounded shadow border ">
+
+    <h1 class="text-3xl font-bold text-center text-green-500 ">Login Now</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="subregister()">
+        
+
+        <div class="mb-3">
+            <label for="email"
+                class="block mb-2 text-base font-medium  text-green-900 dark:text-green-950">Email</label>
+            <input formControlName="email" type="email" id="email"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+
+            @if(loginForm.get('email')?.errors && loginForm.get('email')?.touched ){
+            <div class="flex p-4 mt-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                    <ul class="mt-1.5 list-disc list-inside">
+                        @if (loginForm.get('email')?.hasError('required')) {
+                        <li>Email is required</li>
+                        }@else if (loginForm.get('email')?.hasError('email')) {
+                        <li>Try to enter a valid email</li> 
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            }
+
+        </div>
+
+        <div class="mb-3">
+            <label for="password"
+                class="block mb-2 text-base font-medium  text-green-900 dark:text-green-950">Password</label>
+            <input formControlName="password" type="password" id="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            @if(loginForm.get('password')?.errors && loginForm.get('password')?.touched ){
+            <div class="flex p-4 mt-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                    <ul class="mt-1.5 list-disc list-inside">
+                        @if (loginForm.get('password')?.hasError('required')) {
+                        <li>password is required</li>
+                        }@else if (loginForm.get('password')?.hasError('pattern')) {
+                        <li>Try to enter a valid password start with a capital letter and at least 5 numbers</li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            }
+
+        </div>
+
+       
+        <div class=""> 
+            <button [disabled]="loginForm.invalid"
+                [class]="{'cursor-not-allowed': loginForm.invalid,'btn-gray': loginForm.invalid ,'btn-green': loginForm.valid}"
+                type="submit" class="">Login
+                @if(isLoading){
+                <i class=" ms-4 fas fa-spin fa-spinner"></i>
+                }
+            </button>
+           <div class="mt-4 w-full flex justify-between">
+            <div>
+                <label class="me-2 font-medium"> Don't have an account</label>
+                <a routerLink="/register" class="text-green-500  mt-2 font-bold underline cursor-pointer ">Create Account</a>
+            </div>
+               <a routerLink="/forget-password" class="text-green-500 underline mt-2 font-bold cursor-pointer "> Forgot Password</a>
+
+           </div>
+        </div>
+        @if(error){
+        <div class="p-4 mt-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <span class="font-medium">{{error}}</span>
+        </div>
+
+        }
+    </form>
+</section>

@@ -1,0 +1,13 @@
+<h1 class="mb-4 text-3xl font-light bg-green-50 p-4 text-center">Brands</h1>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+    @for (brand of brands; track brand._id) {
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img [src]="brand.image" [alt]="brand.name" class="w-full h-40 object-contain">
+        <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800">{{ brand.name }}</h3>
+            <p class="text-gray-500 text-sm">{{ brand.slug }}</p>
+        </div>
+    </div>
+    }
+</div> 
+
