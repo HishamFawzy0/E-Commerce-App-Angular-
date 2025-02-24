@@ -16,10 +16,10 @@ export class OrderService {
     // API logic for order service goes here
       checkOutSession(cartID: string ,data:object): Observable<any> {
         return this.httpClient.post(
-          `${environment.BaseUrl}/api/v1/orders/checkout-session/${cartID}?url=http://localhost:4200`,
+          `${environment.BaseUrl}/api/v1/orders/checkout-session/${cartID}?url=https://e-commerce-app-angular-lilac.vercel.app/allorders`,
           {
             shippingAddress: data,
-          },
+          }, 
           { headers: { token: this.authService.token } }
         );
       }
